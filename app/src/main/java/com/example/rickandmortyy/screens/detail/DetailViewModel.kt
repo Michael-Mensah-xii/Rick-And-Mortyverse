@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repository: CharacterRepository
+    private val repository: CharacterRepository,
 ) : ViewModel() {
 
     private val _characterDetails = MutableStateFlow<Character?>(null)

@@ -18,7 +18,7 @@ class CharacterSearchPagingSource(
         //get current page value
         val currentPage = params.key ?: 1
         return try {
-            //send get request to searchImages endpoint in  API
+            //send get request to searchImages endpoint in API
             val response = rickAndMortyApiService.searchCharacters(name = query)
 
             //check if image list is empty
