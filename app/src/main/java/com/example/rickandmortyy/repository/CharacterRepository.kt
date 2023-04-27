@@ -36,9 +36,13 @@ class CharacterRepository @Inject constructor(
 
 
 
-    suspend fun getCharacterDetails(id: Int):Character {
+    /*suspend fun getCharacterDetails(id: Int):Character {
         return rickAndMortyApiService.getCharacterDetails(id).body()
             ?: throw Exception("Failed to get character details")
+    }*/
+
+     suspend fun getCharacterDetails(id: Int): Character {
+        return rickAndMortyApiService.getCharacterDetails(id)
     }
 
 }

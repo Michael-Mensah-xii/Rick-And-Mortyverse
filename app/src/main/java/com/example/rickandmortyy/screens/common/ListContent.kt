@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -28,12 +30,17 @@ import com.example.rickandmortyy.model.CharacterOrigin
 
 @ExperimentalCoilApi
 @Composable
-fun ListContent(items: LazyPagingItems<Character>, onItemClick: (Character) -> Unit) {
+fun ListContent(
+    items: LazyPagingItems<Character>,
+    onItemClick: (Character) -> Unit,
+    //scrollState: LazyListState,
+) {
     Log.d("Error", items.loadState.toString())
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+       // state = scrollState
     ) {
 
         items(
@@ -45,11 +52,10 @@ fun ListContent(items: LazyPagingItems<Character>, onItemClick: (Character) -> U
             character?.let {
                 CharacterListItem(character = it,
                     onItemClick = onItemClick)
-            }//places each image received into CharacterItem
+            }
         }
     }
 }
-
 
 
 @ExperimentalCoilApi
@@ -66,7 +72,6 @@ fun CharacterListItem(character: Character, onItemClick: (Character) -> Unit) {
 
     //asynchronously loads the image and manages its lifecycle(load images only when required)
     val painter = rememberAsyncImagePainter(model)
-    // val context = LocalContext.current
 
     Row(
         modifier = Modifier

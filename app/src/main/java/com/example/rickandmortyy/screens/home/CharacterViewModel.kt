@@ -20,10 +20,5 @@ class CharacterViewModel @Inject constructor(
         return repository.getCharacters()
             .cachedIn(viewModelScope)
     }
-
-    /*suspend fun getCharacterDetails(id: Int): Character {
-        return repository.getCharacterDetails(id)
-            .body() ?: throw Exception("Failed to get character details")
-    }*/
 }
 
