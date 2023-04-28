@@ -27,7 +27,7 @@ fun DetailContent(character: Character) {
         ImageRequest.Builder(LocalContext.current)
             .data(data = character.imageUrl)
             .apply {
-                crossfade(true)
+                crossfade(false)
                 placeholder(R.drawable.ic_placeholder)
                 error(R.drawable.ic_placeholder)
             }

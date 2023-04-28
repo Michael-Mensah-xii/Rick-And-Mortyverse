@@ -38,7 +38,7 @@ fun ListContent(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-       // state = scrollState
+        // state = scrollState
     ) {
 
         items(

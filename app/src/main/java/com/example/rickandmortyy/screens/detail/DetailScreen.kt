@@ -1,6 +1,8 @@
 package com.example.rickandmortyy.screens.detail
 
 import android.annotation.SuppressLint
+import androidx.compose.animation.*
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -32,47 +34,61 @@ fun DetailScreen(
         viewModel.getCharacterDetails(characterId)
     }
 
-    Scaffold(
-        topBar = {
-            DetailTopBar(
-                title = characterDetails?.name ?: "",
-                onBackPressed = { navController.popBackStack() }
-            )
-        },
-        content = {
-            if (isLoading) {
-                // show a loading indicator while the details are being fetched
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = MaterialTheme.colors.topAppBarBackgroundColor)
-                }
-            } else if (errorMessage != null) {
-                // show an error message with a retry button
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(
-                        text = errorMessage!!,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(16.dp)
-                    )
-                    Button(
-                        onClick = { viewModel.retry(characterId) },
-                        modifier = Modifier.padding(top = 72.dp),
-                        colors = (ButtonDefaults.buttonColors(MaterialTheme.colors.topAppBarBackgroundColor)),
+    AnimatedVisibility(
+        visible = characterDetails != null || errorMessage != null || isLoading,
+        enter = slideInHorizontally(
+            initialOffsetX = { it },
+            animationSpec = tween(300)
+        ) + fadeIn(animationSpec = tween(300)),
+        exit = slideOutHorizontally(
+            targetOffsetX = { it },
+            animationSpec = tween(300)
+        ) + fadeOut(animationSpec = tween(300))
+    ) {
+        Scaffold(
+            topBar = {
+                DetailTopBar(
+                    title = characterDetails?.name ?: "",
+                    onBackPressed = { navController.popBackStack() }
+                )
+            },
+            content = {
+                if (isLoading) {
+                    // show a loading indicator while the details are being fetched
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator(color = MaterialTheme.colors.topAppBarBackgroundColor)
+                    }
+                } else if (errorMessage != null) {
+                    // show an error message with a retry button
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text(
+                            text = errorMessage!!,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(16.dp)
+                        )
+                        Button(
+                            onClick = { viewModel.retry(characterId) },
+                            modifier = Modifier.padding(top = 72.dp),
+                            colors = (ButtonDefaults.buttonColors(MaterialTheme.colors.topAppBarBackgroundColor)),
+                        ) {
+                            Text(text = "Retry")
+                        }
+                    }
+                } else if (characterDetails != null) {
+                    DetailContent(character = characterDetails!!)
+                } else {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Text(text = "Retry")
+                        Text(
+                            text = "No details available for this character.",
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(16.dp)
+                        )
                     }
                 }
-            } else if (characterDetails != null) {
-                DetailContent(character = characterDetails!!)
-            } else {
-                Box(modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center) {
-                    Text(
-                        text = "No details available for this character.",
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(16.dp)
-                    )
-                }
             }
-        }
-    )
+        )
+    }
 }

@@ -89,6 +89,12 @@ fun SearchScreen(
                         ListContent(items = searchedImages, onItemClick = { character ->
                             navController.navigate(Screen.Detail.createRouteWithCharacterId(
                                 character.id)) {
+
+                                // Set the animation for entering the detail screen
+                                anim {
+                                    enter = androidx.appcompat.R.anim.abc_slide_in_bottom
+                                    exit = androidx.appcompat.R.anim.abc_slide_out_bottom
+                                }
                                 popUpTo(Screen.Search.route) { saveState = true }
                             }
                         })
