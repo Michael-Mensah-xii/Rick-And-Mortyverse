@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CharacterListResponse(
     @SerialName("results")
-    val results: List<Character> = emptyList(),
+    val results: List<Character> = listOf(),
 )

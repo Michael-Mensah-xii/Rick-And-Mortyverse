@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CharacterSearchResult(
     @SerialName("results")
-    val results: List<Character>,
+    val results: List<Character> = listOf(),
 )
 
 

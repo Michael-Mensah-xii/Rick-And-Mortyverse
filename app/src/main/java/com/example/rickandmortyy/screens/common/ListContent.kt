@@ -110,7 +110,7 @@ fun CharacterListItem(character: Character, onItemClick: (Character) -> Unit) {
 
 @ExperimentalCoilApi
 @Composable
-@Preview
+@Preview(showBackground = true)
 fun UnsplashImagePreview() {
     CharacterListItem(
         character = Character(

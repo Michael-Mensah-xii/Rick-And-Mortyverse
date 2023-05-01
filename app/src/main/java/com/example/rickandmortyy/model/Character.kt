@@ -16,7 +16,7 @@ data class Character(
     @SerialName("gender")
     val gender: String,
     @SerialName("episode")
-    var episode: List<String>,
+    val episode: List<String>,
     @SerialName("image")
     val imageUrl: String,
     @SerialName("origin")
