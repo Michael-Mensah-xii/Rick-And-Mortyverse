@@ -47,10 +47,7 @@ fun DetailScreen(
     ) {
         Scaffold(
             topBar = {
-                DetailTopBar(
-                    title = characterDetails?.name ?: "",
-                    onBackPressed = { navController.popBackStack() }
-                )
+                DetailTopBar { navController.popBackStack() }
             },
             content = {
                 if (isLoading) {

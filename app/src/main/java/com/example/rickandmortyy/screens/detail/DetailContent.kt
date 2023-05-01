@@ -39,100 +39,106 @@ fun DetailContent(character: Character) {
             .fillMaxSize()
             .background(MaterialTheme.colors.background)
     ) {
-        Box(
-            modifier = Modifier
-                .height(300.dp)
-                .fillMaxWidth()
-        ) {
-            Image(
-                painter = painter,
-                contentScale = ContentScale.Crop,
-                contentDescription = character.name,
-                modifier = Modifier.fillMaxSize()
-            )
 
-        }
         Column(
             modifier = Modifier
-                .padding(16.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(
-                text = character.name,
-                style = MaterialTheme.typography.h5,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column(
-                    modifier = Modifier.weight(0.4f)
-                ) {
-                    Text(
-                        text = "Status",
-                        style = MaterialTheme.typography.subtitle1,
-                        color = MaterialTheme.colors.secondaryVariant,
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
-                    Text(
-                        text = character.status,
-                        style = MaterialTheme.typography.body1
-                    )
-                }
-                Column(
-                    modifier = Modifier.weight(0.4f)
-                ) {
-                    Text(
-                        text = "Species",
-                        style = MaterialTheme.typography.subtitle1,
-                        color = MaterialTheme.colors.secondaryVariant,
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
-                    Text(
-                        text = character.species,
-                        style = MaterialTheme.typography.body1
-                    )
-                }
-                Column(
-                    modifier = Modifier.weight(0.2f)
-                ) {
-                    Text(
-                        text = "Gender",
-                        style = MaterialTheme.typography.subtitle1,
-                        color = MaterialTheme.colors.secondaryVariant,
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
-                    Text(
-                        text = character.gender,
-                        style = MaterialTheme.typography.body1
-                    )
-                }
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "Origin",
-                style = MaterialTheme.typography.subtitle1,
-                color = MaterialTheme.colors.secondaryVariant,
-                modifier = Modifier.padding(bottom = 4.dp)
-            )
-            Text(
-                text = character.origin.name,
-                style = MaterialTheme.typography.body1,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
-            Text(
-                text = "Location",
-                style = MaterialTheme.typography.subtitle1,
-                color = MaterialTheme.colors.secondaryVariant,
-                modifier = Modifier.padding(bottom = 4.dp)
-            )
-            Text(
-                text = character.location.name,
-                style = MaterialTheme.typography.body1
-            )
 
+            Box(
+                modifier = Modifier
+                    .height(450.dp)
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp)
+            ) {
+                Image(
+                    painter = painter,
+                    contentScale = ContentScale.Crop,
+                    contentDescription = character.name,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = character.name,
+                    style = MaterialTheme.typography.h5,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Column(
+                        modifier = Modifier.weight(0.4f)
+                    ) {
+                        Text(
+                            text = "Status",
+                            style = MaterialTheme.typography.subtitle1,
+                            color = MaterialTheme.colors.secondaryVariant,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = character.status,
+                            style = MaterialTheme.typography.body1
+                        )
+                    }
+                    Column(
+                        modifier = Modifier.weight(0.4f)
+                    ) {
+                        Text(
+                            text = "Species",
+                            style = MaterialTheme.typography.subtitle1,
+                            color = MaterialTheme.colors.secondaryVariant,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = character.species,
+                            style = MaterialTheme.typography.body1
+                        )
+                    }
+                    Column(
+                        modifier = Modifier.weight(0.2f)
+                    ) {
+                        Text(
+                            text = "Gender",
+                            style = MaterialTheme.typography.subtitle1,
+                            color = MaterialTheme.colors.secondaryVariant,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = character.gender,
+                            style = MaterialTheme.typography.body1
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "Origin",
+                    style = MaterialTheme.typography.subtitle1,
+                    color = MaterialTheme.colors.secondaryVariant,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+                Text(
+                    text = character.origin.name,
+                    style = MaterialTheme.typography.body1,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+                Text(
+                    text = "Location",
+                    style = MaterialTheme.typography.subtitle1,
+                    color = MaterialTheme.colors.secondaryVariant,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+                Text(
+                    text = character.location.name,
+                    style = MaterialTheme.typography.body1
+                )
+            }
         }
     }
 }

@@ -5,13 +5,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.rickandmortyy.screens.home.HomeTopBar
 import com.example.rickandmortyy.ui.theme.topAppBarBackgroundColor
-import com.example.rickandmortyy.ui.theme.topAppBarContentColor
 
 @Composable
 fun DetailTopBar(
-    title: String,
     onBackPressed: () -> Unit,
 ) {
     TopAppBar(
@@ -23,12 +20,7 @@ fun DetailTopBar(
                 )
             }
         },
-        title = {
-            Text(
-                text = title,
-                color = MaterialTheme.colors.topAppBarContentColor
-            )
-        },
+        title = {},
         backgroundColor = MaterialTheme.colors.topAppBarBackgroundColor,
     )
 }
@@ -36,5 +28,5 @@ fun DetailTopBar(
 @Composable
 @Preview
 fun DetailTopBarPreview() {
-    DetailTopBar(title = "Rick Sanchez") {}
+    DetailTopBar {}
 }
