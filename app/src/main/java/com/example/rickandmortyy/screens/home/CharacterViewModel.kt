@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.rickandmortyy.model.Character
-import com.example.rickandmortyy.repository.CharacterRepository
+import com.example.rickandmortyy.data.model.Character
+import com.example.rickandmortyy.data.repository.CharacterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

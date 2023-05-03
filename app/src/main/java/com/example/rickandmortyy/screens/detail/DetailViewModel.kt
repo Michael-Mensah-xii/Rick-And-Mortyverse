@@ -2,8 +2,8 @@ package com.example.rickandmortyy.screens.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmortyy.model.Character
-import com.example.rickandmortyy.repository.CharacterRepository
+import com.example.rickandmortyy.data.model.Character
+import com.example.rickandmortyy.data.repository.CharacterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

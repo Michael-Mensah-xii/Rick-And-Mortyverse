@@ -34,6 +34,8 @@ fun HomeScreen(
 ) {
     val getAllImages = characterViewModel.getCharacters().collectAsLazyPagingItems()
 
+   // val scrollState = rememberSaveable(saver = LazyListStateSaver) { LazyListState() }
+
     // Track whether the initial connection failed or not
     var initialConnectionFailed by remember { mutableStateOf(false) }
 
@@ -77,9 +79,7 @@ fun HomeScreen(
                     // Show the list of characters
                     ListContent(items = getAllImages, onItemClick = { character ->
                         navController.navigate(Screen.Detail.createRouteWithCharacterId(character.id))
-                    })
-                    //,
-                    //scrollState = scrollState)
+                    }/*,scrollState = scrollState*/)
                 }
             }
         }

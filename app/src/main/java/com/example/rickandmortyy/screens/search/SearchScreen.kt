@@ -31,6 +31,8 @@ fun SearchScreen(
     searchViewModel: SearchViewModel = hiltViewModel(),
 ) {
     val searchedImages = searchViewModel.searchedImages.collectAsLazyPagingItems()
+//    val scrollState = rememberSaveable(saver = LazyListStateSaver) { LazyListState() }
+
 
     var initialConnectionFailed by remember { mutableStateOf(false) }
     var isSearchTriggered by remember { mutableStateOf(false) }
@@ -97,8 +99,7 @@ fun SearchScreen(
                                 }
                                 popUpTo(Screen.Search.route) { saveState = true }
                             }
-                        })
-                        // scrollState = scrollState)
+                        }/*, scrollState = scrollState*/)
                     }
                 }
             } else {

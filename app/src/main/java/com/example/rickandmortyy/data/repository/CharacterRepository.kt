@@ -1,11 +1,11 @@
-package com.example.rickandmortyy.repository
+package com.example.rickandmortyy.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.rickandmortyy.model.Character
-import com.example.rickandmortyy.paging.CharacterPagingSource
-import com.example.rickandmortyy.paging.CharacterSearchPagingSource
+import com.example.rickandmortyy.data.model.Character
+import com.example.rickandmortyy.data.paging.CharacterPagingSource
+import com.example.rickandmortyy.data.paging.CharacterSearchPagingSource
 import com.example.rickandmortyy.remote.RickAndMortyApiService
 import com.example.rickandmortyy.util.Constants.ITEMS_PER_PAGE
 import kotlinx.coroutines.flow.Flow

@@ -17,9 +17,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.rickandmortyy.R
-import com.example.rickandmortyy.model.Character
-import com.example.rickandmortyy.model.CharacterLocation
-import com.example.rickandmortyy.model.CharacterOrigin
+import com.example.rickandmortyy.data.model.Character
+import com.example.rickandmortyy.data.model.CharacterLocation
+import com.example.rickandmortyy.data.model.CharacterOrigin
 
 @Composable
 fun DetailContent(character: Character) {

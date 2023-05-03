@@ -21,9 +21,9 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.rickandmortyy.R
-import com.example.rickandmortyy.model.Character
-import com.example.rickandmortyy.model.CharacterLocation
-import com.example.rickandmortyy.model.CharacterOrigin
+import com.example.rickandmortyy.data.model.Character
+import com.example.rickandmortyy.data.model.CharacterLocation
+import com.example.rickandmortyy.data.model.CharacterOrigin
 
 
 @ExperimentalCoilApi
@@ -38,7 +38,7 @@ fun ListContent(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        // state = scrollState
+       // state = scrollState
     ) {
 
         items(

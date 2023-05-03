@@ -1,8 +1,8 @@
-package com.example.rickandmortyy.paging
+package com.example.rickandmortyy.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.rickandmortyy.model.Character
+import com.example.rickandmortyy.data.model.Character
 import com.example.rickandmortyy.remote.RickAndMortyApiService
 
 
@@ -42,7 +42,7 @@ class CharacterSearchPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int,Character>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
         return state.anchorPosition
     }
 }

@@ -1,8 +1,8 @@
 package com.example.rickandmortyy.remote
 
-import com.example.rickandmortyy.model.Character
-import com.example.rickandmortyy.model.CharacterListResponse
-import com.example.rickandmortyy.model.CharacterSearchResult
+import com.example.rickandmortyy.data.model.Character
+import com.example.rickandmortyy.data.model.CharacterListResponse
+import com.example.rickandmortyy.data.model.CharacterSearchResult
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
