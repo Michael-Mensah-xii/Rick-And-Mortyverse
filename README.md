@@ -25,4 +25,9 @@ Project for studying app architecture using the Rick And Morty API and REST API 
 
 <img alt="Screenshot_20230425_035644" height="720" src="https://user-images.githubusercontent.com/95852329/234291715-772f2eab-2b91-4600-902c-79815427ba8d.png" width="340"/>      <img alt="Screenshot_20230425_221312" height="720" src="https://user-images.githubusercontent.com/95852329/234449434-8e941e65-6cdc-4534-be98-93adafd49142.png" width="340"/>
 
+# App Visual
+
+https://github.com/Michael-Mensah-xii/Rick-And-Mortyverse/assets/95852329/2697efb9-8de3-4411-bde0-c33676b0cbd5
+
+
 
