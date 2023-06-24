@@ -16,6 +16,7 @@ class DetailViewModel @Inject constructor(
     private val repository: CharacterRepository,
 ) : ViewModel() {
 
+
     private val _characterDetails = MutableStateFlow<Character?>(null)
     val characterDetails: StateFlow<Character?>
         get() = _characterDetails

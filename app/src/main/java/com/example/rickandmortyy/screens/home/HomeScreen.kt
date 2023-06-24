@@ -12,15 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
-import com.example.rickandmortyy.navigation.Screen
+import com.example.rickandmortyy.navigation.MainActions
 import com.example.rickandmortyy.screens.common.ListContent
 import com.example.rickandmortyy.ui.theme.Bar
 import com.example.rickandmortyy.ui.theme.topAppBarBackgroundColor
+
 
 //check
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -28,13 +28,10 @@ import com.example.rickandmortyy.ui.theme.topAppBarBackgroundColor
 @ExperimentalPagingApi
 @Composable
 fun HomeScreen(
-    navController: NavHostController,
     characterViewModel: CharacterViewModel = hiltViewModel(),
-    //scrollState: LazyListState = rememberLazyListState(),
+    actions: MainActions
 ) {
     val getAllImages = characterViewModel.getCharacters().collectAsLazyPagingItems()
-
-   // val scrollState = rememberSaveable(saver = LazyListStateSaver) { LazyListState() }
 
     // Track whether the initial connection failed or not
     var initialConnectionFailed by remember { mutableStateOf(false) }
@@ -43,7 +40,7 @@ fun HomeScreen(
         topBar = {
             HomeTopBar(
                 onSearchClicked = {
-                    navController.navigate(Screen.Search.route)
+                    actions.openSearchScreen()
                 }
             )
         },
@@ -55,6 +52,7 @@ fun HomeScreen(
                         CircularProgressIndicator(color = MaterialTheme.colors.topAppBarBackgroundColor)
                     }
                 }
+
                 is LoadState.Error -> {
                     // Show an error message with a retry button when the initial connection fails
                     initialConnectionFailed = true
@@ -75,11 +73,12 @@ fun HomeScreen(
                         }
                     }
                 }
+
                 else -> {
                     // Show the list of characters
-                    ListContent(items = getAllImages, onItemClick = { character ->
-                        navController.navigate(Screen.Detail.createRouteWithCharacterId(character.id))
-                    }/*,scrollState = scrollState*/)
+                    ListContent(items = getAllImages, onItemClick = {
+                        actions.openDetailPage(it.id)
+                    })
                 }
             }
         }

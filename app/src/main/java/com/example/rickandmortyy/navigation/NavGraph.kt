@@ -1,11 +1,12 @@
 package com.example.rickandmortyy.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import com.example.rickandmortyy.screens.common.ListContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
@@ -16,16 +17,18 @@ import com.example.rickandmortyy.screens.search.SearchScreen
 @ExperimentalCoilApi
 @ExperimentalPagingApi
 @Composable
-fun SetUpNavGraph(navController: NavHostController) {
+fun SetUpNavGraph() {
+    val navController = rememberNavController()
+    val actions = remember(navController) { MainActions(navController) }
+
     NavHost(
-        navController = navController,
-        startDestination = Screen.Home.route
+        navController, startDestination = Screen.Home.route
     ) {
         composable(route = Screen.Home.route) {
-            HomeScreen(navController = navController)
+            HomeScreen(actions = actions)
         }
         composable(route = Screen.Search.route) {
-            SearchScreen(navController = navController)
+            SearchScreen(actions = actions)
         }
 
 
@@ -36,8 +39,29 @@ fun SetUpNavGraph(navController: NavHostController) {
             // Retrieve the characterId argument from the NavBackStackEntry
             val characterId = backStackEntry.arguments?.getInt("characterId") ?: -1
 
-            DetailScreen(characterId = characterId, navController = navController)
+            DetailScreen(characterId = characterId, actions = actions)
         }
 
+    }
+}
+
+class MainActions(private val navController: NavHostController) {
+
+    val popBackStack: () -> Unit = {
+        navController.popBackStack()
+    }
+
+    val onBackPressed: () -> Unit = {
+        navController.navigateUp()
+    }
+
+    val openDetailPage: (characterId: Int) -> Unit = {
+        navController.navigateUp()
+        navController.navigate(Screen.Detail.createRouteWithCharacterId(it))
+    }
+
+    val openSearchScreen: () -> Unit = {
+        navController.navigateUp()
+        navController.navigate(Screen.Search.route)
     }
 }

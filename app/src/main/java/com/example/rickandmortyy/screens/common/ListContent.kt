@@ -3,7 +3,14 @@ package com.example.rickandmortyy.screens.common
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
@@ -31,25 +38,25 @@ import com.example.rickandmortyy.data.model.CharacterOrigin
 fun ListContent(
     items: LazyPagingItems<Character>,
     onItemClick: (Character) -> Unit,
-    //scrollState: LazyListState,
 ) {
     Log.d("Error", items.loadState.toString())
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-       // state = scrollState
     ) {
 
         items(
             items = items,
-            key = { character ->
+            /*key = { character ->
                 character.id
-            }
+            }*/
         ) { character ->
             character?.let {
-                CharacterListItem(character = it,
-                    onItemClick = onItemClick)
+                CharacterListItem(
+                    character = it,
+                    onItemClick = onItemClick
+                )
             }
         }
     }
