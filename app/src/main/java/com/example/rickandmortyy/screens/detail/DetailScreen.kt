@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
+import com.example.rickandmortyy.navigation.MainActions
 import com.example.rickandmortyy.ui.theme.topAppBarBackgroundColor
 
 
@@ -22,7 +22,7 @@ import com.example.rickandmortyy.ui.theme.topAppBarBackgroundColor
 @ExperimentalCoilApi
 @Composable
 fun DetailScreen(
-    navController: NavHostController,
+    actions: MainActions,
     characterId: Int,
     viewModel: DetailViewModel = hiltViewModel(),
 ) {
@@ -37,55 +37,49 @@ fun DetailScreen(
     AnimatedVisibility(
         visible = characterDetails != null || errorMessage != null || isLoading,
         enter = slideInHorizontally(
-            initialOffsetX = { it },
-            animationSpec = tween(300)
-        ) + fadeIn(animationSpec = tween(300)),
+            initialOffsetX = { it }, animationSpec = tween(500)
+        ) + fadeIn(animationSpec = tween(500)),
         exit = slideOutHorizontally(
-            targetOffsetX = { it },
-            animationSpec = tween(300)
-        ) + fadeOut(animationSpec = tween(300))
+            targetOffsetX = { it }, animationSpec = tween(500)
+        ) + fadeOut(animationSpec = tween(500))
     ) {
-        Scaffold(
-            topBar = {
-                DetailTopBar { navController.popBackStack() }
-            },
-            content = {
-                if (isLoading) {
-                    // show a loading indicator while the details are being fetched
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(color = MaterialTheme.colors.topAppBarBackgroundColor)
-                    }
-                } else if (errorMessage != null) {
-                    // show an error message with a retry button
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(
-                            text = errorMessage!!,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(16.dp)
-                        )
-                        Button(
-                            onClick = { viewModel.retry(characterId) },
-                            modifier = Modifier.padding(top = 72.dp),
-                            colors = (ButtonDefaults.buttonColors(MaterialTheme.colors.topAppBarBackgroundColor)),
-                        ) {
-                            Text(text = "Retry")
-                        }
-                    }
-                } else if (characterDetails != null) {
-                    DetailContent(character = characterDetails!!)
-                } else {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
+        Scaffold(topBar = {
+            DetailTopBar(onBackPressed = actions.onBackPressed)
+        }, content = {
+            if (isLoading) {
+                // show a loading indicator while the details are being fetched
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(color = MaterialTheme.colors.topAppBarBackgroundColor)
+                }
+            } else if (errorMessage != null) {
+                // show an error message with a retry button
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text(
+                        text = errorMessage!!,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                    Button(
+                        onClick = { viewModel.retry(characterId) },
+                        modifier = Modifier.padding(top = 72.dp),
+                        colors = (ButtonDefaults.buttonColors(MaterialTheme.colors.topAppBarBackgroundColor)),
                     ) {
-                        Text(
-                            text = "No details available for this character.",
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(16.dp)
-                        )
+                        Text(text = "Retry")
                     }
                 }
+            } else if (characterDetails != null) {
+                DetailContent(character = characterDetails!!)
+            } else {
+                Box(
+                    modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "No details available for this character.",
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
             }
-        )
+        })
     }
 }

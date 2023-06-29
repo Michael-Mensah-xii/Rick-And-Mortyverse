@@ -9,7 +9,8 @@ sealed class Screen(val route: String) {
     // add a function to create the route with the characterId parameter
     fun createRouteWithCharacterId(characterId: Int): String {
         return "detail_screen/$characterId"
-    }}
+    }
+}
 
 
 
