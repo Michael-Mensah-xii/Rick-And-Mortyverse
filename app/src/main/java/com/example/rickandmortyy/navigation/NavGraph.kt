@@ -22,8 +22,7 @@ fun SetUpNavGraph() {
     val actions = remember(navController) { MainActions(navController) }
 
     NavHost(
-        navController,
-        startDestination = Screen.Home.route
+        navController, startDestination = Screen.Home.route
     ) {
         composable(route = Screen.Home.route) {
             HomeScreen(actions = actions)
