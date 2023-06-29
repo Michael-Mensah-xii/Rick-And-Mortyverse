@@ -31,14 +31,12 @@ import com.example.rickandmortyy.data.model.CharacterOrigin
 fun ListContent(
     items: LazyPagingItems<Character>,
     onItemClick: (Character) -> Unit,
-    //scrollState: LazyListState,
 ) {
     Log.d("Error", items.loadState.toString())
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(all = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-       // state = scrollState
     ) {
 
         items(
