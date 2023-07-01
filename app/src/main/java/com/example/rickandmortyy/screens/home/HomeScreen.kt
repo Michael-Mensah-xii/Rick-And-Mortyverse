@@ -31,7 +31,7 @@ fun HomeScreen(
     characterViewModel: CharacterViewModel = hiltViewModel(),
     actions: MainActions
 ) {
-    val getAllImages = characterViewModel.getCharacters().collectAsLazyPagingItems()
+    val getAllImages = characterViewModel.getCharacters.collectAsLazyPagingItems()
 
     // Track whether the initial connection failed or not
     var initialConnectionFailed by remember { mutableStateOf(false) }
