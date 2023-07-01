@@ -56,12 +56,10 @@ class MainActions(private val navController: NavHostController) {
     }
 
     val openDetailPage: (characterId: Int) -> Unit = {
-        navController.navigateUp()
         navController.navigate(Screen.Detail.createRouteWithCharacterId(it))
     }
 
     val openSearchScreen: () -> Unit = {
-        navController.navigateUp()
         navController.navigate(Screen.Search.route)
     }
 }

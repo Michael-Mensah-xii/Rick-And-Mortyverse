@@ -12,7 +12,6 @@ import com.example.rickandmortyy.data.model.Character
 import com.example.rickandmortyy.data.repository.CharacterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,25 +21,17 @@ class SearchViewModel @Inject constructor(
     private val repository: CharacterRepository,
 ) : ViewModel() {
 
-    private var currentQuery: String? = null
-
     var searchQuery by mutableStateOf("")
         private set
 
     private val _searchedImages = MutableStateFlow<PagingData<Character>>(PagingData.empty())
-    val searchedImages = _searchedImages.asStateFlow()
+    val searchedImages = _searchedImages
 
     fun updateSearchQuery(query: String) {
         searchQuery = query
     }
 
     fun searchStuff(query: String) {
-        if (query != currentQuery) {
-            // If the search query has changed, reset the LazyPagingItems state
-            currentQuery = query
-            _searchedImages.value = PagingData.empty()
-        }
-
         viewModelScope.launch {
             repository.searchCharacters(query = query).cachedIn(viewModelScope).collect {
                 _searchedImages.value = it
